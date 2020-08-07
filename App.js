@@ -1,15 +1,17 @@
 //named and default import/exports
 //only one default export module
 //think of module as file
-
 import React from "react";
 import BookList from "./mycomponent/BookList";
+import "./App.css";
 const App = () => (
   <div>
-    <h1>this is my Application</h1>
     <BookList />
   </div>
 );
+
+export default App;
+
 
 //import Wellcome from "./mycomponent/Wellcome";
 /*import { name, age, person } from "./mycomponent/data";
