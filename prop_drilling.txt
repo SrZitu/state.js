@@ -1,0 +1,84 @@
+
+/////************************BookList.js*****************************
+
+import React, { Component } from "react";
+import Book from "./Book";
+import booksData from "./booksData";
+export default class BookList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: booksData,
+    };
+  }
+  handleDelete = () => {
+    console.log("i'm from parent component");
+  };
+  render() {
+    return (
+      <section>
+        <h3>This is our Booklist</h3>
+        {this.state.books.map((item) => (
+          <Book key={item.id} info={item} handleDelete={this.handleDelete} />
+        ))}
+      </section>
+    );
+  }
+}
+
+/////************************Book.js*****************************
+import React, { Component } from "react";
+import Button from "./Buttons";
+export default class Book extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 1,
+      name: "john",
+    };
+    //this.handleClick = this.handleClick.bind(this);
+  }
+  /*handleClick() {
+    console.log("button is clicked");
+    console.log(this.state.count);
+  }
+  handleClick = () => {
+    console.log("button is clicked");
+    console.log(this.state.count);
+  };
+    <button type="button" onClick={this.handleClick}>
+  Add Count
+          </button>*/
+
+  render() {
+    const { img, title, author } = this.props.info;
+    const { handleDelete } = this.props;
+    // console.log(this.props);
+    return (
+      <div className="book">
+        <img src={img} width="150" alt="book" />
+        <div>
+          <h4>Title:{title}</h4>
+          <h6>Author:{author}</h6>
+          <Button handleDelete={handleDelete} />
+        </div>
+      </div>
+    );
+  }
+}
+**********************************Button.jd**********************
+import React from "react";
+
+export default function Buttons({ handleDelete }) {
+  return (
+    <div>
+      <button
+        type="button"
+        style={{ background: "#e63946", color: "white", fontSize: "1rem" }}
+        onClick={handleDelete}
+      >
+        Delete Me
+      </button>
+    </div>
+  );
+}
